@@ -72,7 +72,7 @@ export default class Home extends React.Component<{}, IHomeState> {
     }
   }
 
-  public render() {
+  public renderContent() {
     const { loading, list, isDone } = this.state;
 
     if (loading && !list.length) {
@@ -81,6 +81,7 @@ export default class Home extends React.Component<{}, IHomeState> {
 
     return (
       <div className="m-post-list">
+        <h2>Posts</h2>
         {
           list.map((el) => (
             <Link key={el.number} to={`/post/${el.number}`}>
@@ -95,6 +96,14 @@ export default class Home extends React.Component<{}, IHomeState> {
           ))
         }
         { !loading && !isDone && <div className="u-load">继续加载</div> }
+      </div>
+    );
+  }
+
+  public render() {
+    return (
+      <div className="home">
+        {this.renderContent()}
       </div>
     );
   }
