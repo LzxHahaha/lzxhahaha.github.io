@@ -1,0 +1,40 @@
+.u-loading {
+    max-width: 800px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.m-post-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.m-post-item {
+    border-radius: 3px;
+    border: 1px #eaeaea solid;
+    padding: 15px 20px;
+    font-size: 14px;
+    color: black;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.m-post-item .u-post-title {
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+.u-post-preview {
+    margin: 15px 0 0;
+}
+
+.u-load {
+    border-radius: 3px;
+    border: 1px #eaeaea solid;
+    padding: 5px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+}

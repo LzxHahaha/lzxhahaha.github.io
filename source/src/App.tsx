@@ -20,10 +20,15 @@ class App extends React.Component {
     return (
       <Router>
         <div className="g-page">
-          <div className="m-top-bar">Home</div>
+          <div className="m-top-bar">
+            LZXHAHAHA
+            <a href="https://github.com/lzxhahaha" target="_blank">
+              <img src="/Octocats.png" />
+            </a>
+          </div>
           <div className="m-container">
             <Route exact path="/" component={Home} />
-            <Route path="/post" component={Post} />
+            <Route path="/post/:number" component={Post} />
           </div>
         </div>
       </Router>

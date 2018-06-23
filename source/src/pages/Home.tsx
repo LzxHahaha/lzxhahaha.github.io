@@ -1,13 +1,9 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import * as moment from 'moment';
+import { markdown } from 'markdown';
 
-interface IHomeState {
-  list: IPostItem[],
-  page: number,
-  pageSize: number,
-  isDone: boolean
-};
+import './Home.css';
 
 interface IPostItem {
   title: string,
@@ -16,7 +12,26 @@ interface IPostItem {
   updated_at: string
 }
 
+interface IHomeState {
+  list: IPostItem[],
+  page: number,
+  pageSize: number,
+  isDone: boolean,
+  loading: boolean
+}
+
 export default class Home extends React.Component<{}, IHomeState> {
+  public static getPreview(content: string) {
+    const html = markdown.toHTML(content);
+    const node = document.createElement('div');
+    node.innerHTML = html;
+    let text = node.innerText.substr(0, 200);
+    if (text.length === 200) {
+      text += '...';
+    }
+    return text;
+  }
+
   constructor(props: any) {
     super(props);
 
@@ -25,6 +40,7 @@ export default class Home extends React.Component<{}, IHomeState> {
       list: [],
       page: 1,
       pageSize: 10,
+      loading: false
     };
   }
 
@@ -38,28 +54,47 @@ export default class Home extends React.Component<{}, IHomeState> {
     if (isDone) {
       return;
     }
-    const res = await fetch(`https://api.github.com/repos/lzxhahaha/lzxhahaha.github.io/issues?labels=publish&page=${page}&per_page=${pageSize}`);
-    const list: IPostItem[] = await res.json();
+    this.setState({ loading: true });
+    try {
+      const res = await fetch(`https://api.github.com/repos/lzxhahaha/lzxhahaha.github.io/issues?labels=publish&page=${page}&per_page=${pageSize}`);
+      const list: IPostItem[] = await res.json();
 
-    if (list.length) {
-      this.setState({ list });
-    } else {
-      this.setState({ isDone: true });
+      if (list.length) {
+        this.setState({list});
+      }
+      if (list.length < pageSize) {
+        this.setState({isDone: true});
+      }
+    } catch (err) {
+      alert(err.message);
+    } finally {
+      this.setState({ loading: false });
     }
   }
 
   public render() {
+    const { loading, list, isDone } = this.state;
+
+    if (loading && !list.length) {
+      return (<div className="u-loading">加载中...</div>);
+    }
+
     return (
-      <div>
-        <ul>
-          {
-            this.state.list.map((el) => (
-              <li key={el.number}>
-                <Link to={`/post?id=${el.number}`}>{el.title} - {moment(el.updated_at).format('YYYY-MM-DD')}</Link>
-              </li>
-            ))
-          }
-        </ul>
+      <div className="m-post-list">
+        {
+          list.map((el) => (
+            <Link key={el.number} to={`/post/${el.number}`}>
+              <div className="m-post-item">
+                <div>
+                  <div className="u-post-title">{el.title}</div>
+                  {moment(el.updated_at).format('YYYY-MM-DD')}
+                </div>
+                <p className="u-post-preview">{Home.getPreview(el.body)}</p>
+              </div>
+            </Link>
+          ))
+        }
+        { !loading && !isDone && <div className="u-load">继续加载</div> }
       </div>
     );
   }

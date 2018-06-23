@@ -5,3 +5,10 @@ html, body, #root {
   height: 100%;
   overflow: hidden;
 }
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+}
