@@ -24,7 +24,7 @@ class App extends React.Component {
           <div className="m-top-bar">
             <Link to="/">LZXHAHAHA</Link>
             <a href="https://github.com/lzxhahaha" target="_blank">
-              <img src="/Octocats.png" />
+              <img src="/Octocat.png" className="github" />
             </a>
           </div>
           <div className="m-container">
