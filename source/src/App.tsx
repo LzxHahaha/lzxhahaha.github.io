@@ -23,7 +23,7 @@ class App extends React.Component {
         <div className="g-page">
           <div className="m-top-bar">
             <Link to="/">LZXHAHAHA</Link>
-            <a href="https://github.com/lzxhahaha" target="_blank">
+            <a href="https://github.com/lzxhahaha" target="_blank" className="github-link">
               <img src="/Octocat.png" className="github" />
             </a>
           </div>
