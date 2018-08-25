@@ -66,7 +66,8 @@ export default class Home extends React.Component<{}, IHomeState> {
         this.setState({isDone: true});
       }
     } catch (err) {
-      alert(err.message);
+      alert('加载失败');
+      console.error(err.message);
     } finally {
       this.setState({ loading: false });
     }

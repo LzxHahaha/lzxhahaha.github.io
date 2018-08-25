@@ -20,9 +20,9 @@
 }
 
 .post .u-title {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 5px;
+    margin: -15px -20px 15px;
+    padding: 0 20px 15px;
+    border-bottom: 1px solid #eaeaea;
 }
 
 .post .u-return-btn {
@@ -34,4 +34,17 @@
     background-color: #2b2b2b;
     border-radius: 3px;
     font-size: 12px;
+}
+
+.post pre {
+    background-color: #fafafa;
+    padding: 10px;
+    border-radius: 5px;
+    overflow: auto;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.post code {
+    font-family: Consolas,"Microsoft YaHei UI",sans-serif;
 }

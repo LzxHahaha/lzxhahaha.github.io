@@ -10,5 +10,6 @@ a:link,
 a:visited,
 a:hover,
 a:active {
+  color: #678577;
   text-decoration: none;
 }
