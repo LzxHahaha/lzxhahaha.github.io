@@ -67,7 +67,8 @@ console.log('Moving new file');
 moveAll(buildPath, publicPath);
 
 // console.log('Push to github');
-// childProcess.execFileSync('git commit -a "rebuild page"');
+// childProcess.execFileSync('git add .');
+// childProcess.execFileSync('git commit -m "rebuild page"');
 // childProcess.execFileSync('git push origin master');
 
 console.log('Done!');
