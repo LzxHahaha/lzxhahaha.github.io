@@ -56,7 +56,8 @@ export default class Home extends React.Component<{}, IHomeState> {
     }
     this.setState({ loading: true });
     try {
-      const res = await fetch(`https://api.github.com/repos/lzxhahaha/lzxhahaha.github.io/issues?labels=publish&page=${page}&per_page=${pageSize}`);
+      const url = `https://api.github.com/repos/lzxhahaha/lzxhahaha.github.io/issues?labels=publish&page=${page}&per_page=${pageSize}&state=all`;
+      const res = await fetch(url);
       const list: IPostItem[] = await res.json();
 
       if (list.length) {
